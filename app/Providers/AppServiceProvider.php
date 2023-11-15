@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Validator; // Import the Validator facade
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('lowercase', function ($attribute, $value, $parameters, $validator) {
+            return strtolower($value) === $value;
+        });
     }
 }
