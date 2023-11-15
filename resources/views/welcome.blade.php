@@ -3,17 +3,13 @@
 @section('content')
 
 @if ($articles !== null)
-    @foreach ($articles as $article)
+    
         <section class="section">
             <div class="container">
-                <div class="row mb-4">
-                    <div class="col-sm-6">
-                        <h2 class="posts-entry-title">{{ $article->title }}</h2>
-                    </div>
-                </div>
+                
 
                 <div class="row">
-
+@foreach ($articles as $article)
                     <div class="col-lg-4 mb-4">
                         <div class="post-entry-alt">
                             <a href="{{ route('single', $article->id) }}" class="img-link">
@@ -46,11 +42,12 @@
                             </div>
                         </div>
                     </div>
+                 @endforeach
 
                 </div>
             </div>
         </section>
-    @endforeach
+   
 @endif
 
 @endsection

@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('articles', function (Blueprint $table) {
             $table->id(); // This is the primary key and auto-incrementing
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('image');
             $table->datetime('current_date_time');
             $table->unsignedBigInteger('user_id');

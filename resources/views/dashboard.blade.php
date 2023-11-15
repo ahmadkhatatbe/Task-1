@@ -164,7 +164,7 @@
                                 </button>
 
                                 <!-- User dropdown menu -->
-                                <div x-show="open" x-ref="userMenu"
+                                <div style="margin-left: 50px" x-show="open" x-ref="userMenu"
                                     x-transition:enter="transition-all transform ease-out"
                                     x-transition:enter-start="translate-y-1/2 opacity-0"
                                     x-transition:enter-end="translate-y-0 opacity-100"
@@ -253,10 +253,11 @@
                                 </button>
 
                                 <!-- User dropdown menu -->
-                                <div x-show="open" x-transition:enter="transition-all transform ease-out"
+                                <div style="margin-right: 50px" x-show="open"
+                                    x-transition:enter="transition-all transform ease-out"
                                     x-transition:enter-start="translate-y-1/2 opacity-0"
                                     x-transition:enter-end="translate-y-0 opacity-100"
-                                    x-transition:leave="transition-all transform ease-in"
+                                    x-transition:leave="transition-all transform ease-out"
                                     x-transition:leave-start="translate-y-0 opacity-100"
                                     x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
                                     class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
@@ -391,24 +392,34 @@
                                         @foreach ($articles as $article)
                                             <tr>
                                                 <th scope="row">1</th>
-                                                <td> <img src="{{ $article->image }}" alt="image" srcset=""
-                                                        width="100px" height="100px"></td>
-                                                <td>{{ $article->title }}</td>
-<td style="width: 300px; max-height: 200px; overflow: hidden;">
-    <div class="content-wrapper">
-        {{ $article->description }}
-    </div>
-    <a class="btn btn-primary" href="#" id="read-more">Read More</a>
-</td>
-                                                <td>{{ $article->current_date_time }}</td>
-                                                <td><a href="{{ route('articles.edit', $article->id) }}"
-                                                        class="btn btn-primary">تعديل المقال</a></td>
-                                                <td>
+                                                <td class="col-lg-2"> <img src="{{ $article->image }}"
+                                                        alt="image" srcset="" width="100px" height="1">
+                                                </td>
+                                                <td class="col-lg-2">{{ $article->title }}</td>
+                                                <td class="col-lg-2">
+                                                    <div class="description"
+                                                        style="
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 1;
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;
+                                ">
+                                                        <p>{{ $article->description }}</p>
+                                                    </div>
+
+
+                                                </td>
+                                                <td class="col-lg-2">{{ $article->current_date_time }}</td>
+                                                <td class="col-lg-2">
+                                                    <a href="{{ route('articles.edit', $article->id) }}"
+                                                        class="btn btn-primary px-5">تعديل المقال</a>
+                                                </td>
+                                                <td class="col-lg-2">
                                                     <form action="{{ route('articles.destroy', $article->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-primary">حذف
+                                                        <button type="submit" class="btn btn-primary px-5">حذف
                                                             مقال</button>
                                                     </form>
                                                 </td>
@@ -1047,22 +1058,22 @@
         }
     </script>
     <script>
-        document.getElementById('read-more').addEventListener('click', function (e) {
-        e.preventDefault(); // Prevent the link from navigating
+        document.getElementById('read-more').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent the link from navigating
 
-        var contentWrapper = document.querySelector('.content-wrapper');
-        var readMoreLink = document.getElementById('read-more');
+            var contentWrapper = document.querySelector('.content-wrapper');
+            var readMoreLink = document.getElementById('read-more');
 
-        if (contentWrapper.style.maxHeight === '200px') {
-            contentWrapper.style.maxHeight = 'none';
-            readMoreLink.innerText = 'Read Less';
-        } else {      
-                  contentWrapper.style.maxHeight = '200px';
+            if (contentWrapper.style.maxHeight === '200px') {
+                contentWrapper.style.maxHeight = 'none';
+                readMoreLink.innerText = 'Read Less';
+            } else {
+                contentWrapper.style.maxHeight = '200px';
 
-            readMoreLink.innerText = 'Read More';
-            
-        }
-    });
+                readMoreLink.innerText = 'Read More';
+
+            }
+        });
     </script>
 </body>
 

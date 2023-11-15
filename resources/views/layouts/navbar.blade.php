@@ -56,7 +56,7 @@
 
 
                             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
-                                <li class="active"><a href="{{ route('home') }}">الصحه الرئيسية</a></li>
+                                <li class="active"><a href="{{ route('home') }}">الصفحه الرئيسية</a></li>
                                 @if (Auth::check())
                                     <li class="has-children">
                                         <a href="#">حسابي</a>
@@ -97,7 +97,7 @@
 
 
 
-    <footer class="site-footer">
+    <footer class="site-footer" style="margin-top: 300px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
